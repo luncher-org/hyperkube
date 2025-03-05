@@ -1,10 +1,10 @@
-K8S_VERSION?=v1.32.2
+K8S_VERSION?=v1.33.0-alpha.3
 
 ARCH?=amd64
 ALL_ARCH=amd64 arm64
 
-IMAGE?=docker.io/rancher/hyperkube
-TAGEND?=rancher1
+IMAGE?=ghcr.io/luncher-org/hyperkube
+TAGEND?=luncher1
 
 K8S_STAGING:=$(shell mktemp -d)
 
@@ -29,7 +29,7 @@ all-push: all-push-images push-manifest
 k8s-tars/${K8S_VERSION}/${ARCH}/${K8S_SERVER_TARBALL}:
 	mkdir -p k8s-tars/${K8S_VERSION}/${ARCH}
 	cd k8s-tars/${K8S_VERSION}/${ARCH} && curl -sSLO --retry 5 https://dl.k8s.io/${K8S_VERSION}/${K8S_SERVER_TARBALL} \
-	&& curl -sSLO --retry 5 https://github.com/rancher/kubernetes/releases/download/${K8S_VERSION}/kubelet-${K8S_VERSION}-${ARCH}.tar.gz
+	&& curl -sSLO --retry 5 https://github.com/luncher-org/kubernetes/releases/download/${K8S_VERSION}/kubelet-${K8S_VERSION}-${ARCH}.tar.gz
 	
 k8s-binaries: k8s-tars/${K8S_VERSION}/${ARCH}/$(K8S_SERVER_TARBALL)
 	mkdir -p ${K8S_STAGING}/k8s-server-untarred
