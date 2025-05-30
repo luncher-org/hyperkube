@@ -1,4 +1,4 @@
-FROM rancher/hyperkube-base:v0.0.21
+FROM rancher/hyperkube-base:v0.0.22
 
 LABEL org.opencontainers.image.source=https://github.com/luncher-org/hyperkube
 LABEL org.opencontainers.image.licenses=Apache-2.0
